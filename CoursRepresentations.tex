@@ -1,0 +1,1075 @@
+\documentclass[a4paper]{article}
+
+\topmargin=-5mm
+\textwidth=150mm
+\oddsidemargin=0mm
+\textheight=250mm
+
+\tolerance=1414 % Inconfort toléré par ligne avant de tenter l'insertion d'espace d'urgence.
+\setlength\emergencystretch{1.5em} % Quantité d'espace d'urgence disponible par ligne.
+\hbadness=1414 % Seuil à partir duquel TeX montre les mauvaises hboxes.
+\setlength\hfuzz{4pt} % Tolère une hbox légèrement trop pleine sans produire d'erreur.
+\widowpenalty=10000 % Interdit toute ligne "veuve" terminant un paragraphe en haut de page.
+\raggedbottom % Préfère remplir les pages partiellement que jouer sur l'interligne.
+\setlength\vfuzz{3pt} % Tolère une vbox légèrement trop pleine sans produire d'erreur.
+
+
+
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp} % Jeu de symboles complémentaires.
+\usepackage[autolanguage]{numprint} %% Formatage des nombres.
+\usepackage{indentfirst}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref} % Génère des liens hypertexte dans le fichier pdf.
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=red,urlcolor=blue}
+\usepackage{graphicx} % Permet l'insertion d'images.
+\usepackage{verbatim} % Définit des environnements de texte préformaté et de commentaires.
+\usepackage{makeidx} % Permet la création d'un index
+\usepackage[refpage]{nomencl} % Permet la création d'un index des notations
+\usepackage{enumitem} % Permet les listes
+\usepackage{tikz} % Pour les dessins en Tikz
+\usetikzlibrary{matrix,arrows,patterns}
+\usepackage{multicol}
+\usepackage{fullpage}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[all]{xy}
+\usepackage{stmaryrd}
+\usepackage{mathrsfs}%pour utiliser $\mathscr$
+
+
+\newcommand\gts[1]{\og#1\fg} % Guillemets « à la française ».
+
+\usepackage{multido}
+
+\newcommand{\Pointilles}[1]{%
+\par\nobreak
+%  \noindent\rule{0pt}{1.5\baselineskip}% Provides a larger gap between the preceding paragraph and the dots
+\multido{}{#1}{\noindent\makebox[\linewidth]{\dotfill}\endgraf}% ... dotted lines ...
+%  \bigskip% Gap between dots and next paragraph
+}
+
+\newcounter{question}
+\newcounter{sousquestion}
+\newtheorem{enonce}{Exercice}
+\newenvironment{exo}[0]{\begin{enonce}{\bf ---}\rm\setcounter{question}{1}}{\end{enonce}}
+\newcommand{\quest}{{\setcounter{sousquestion}{1}\vspace{0.1cm}\bf \arabic{question}.\hspace{0.1cm}}\addtocounter{question}{1}}
+\newcommand{\sousq}{{\hspace{0.5cm}\vspace{0.1cm}\bf \alph{sousquestion}.\hspace{0.1cm}}\addtocounter{sousquestion}{1}}
+
+
+
+%\newcommand{\fct}[5]{#1:\left\{\begin{array}{@{}r c l} #2 &\to& #3 \\ #4 &\mapsto & #5 \end{array}\right.}
+%\newcommand{\binomial}[2]{\left(\begin{array}{@{}c@{}}#1 \\ #2\end{array}\right)}
+
+
+
+%\addtolength{\hoffset}{-1.8cm}
+%\addtolength{\textwidth}{3.6cm}
+
+\usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=2cm]{geometry}
+
+
+\usepackage{manfnt}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\makeatletter
+\@addtoreset{footnote}{subsection}
+\makeatother
+\sloppy
+
+%\swapnumbers % Avec cette ligne, le numéro des théorèmes s'affiche avant le mot "Théorème".
+\theoremstyle{definition} % Pour tout ce qui ressemble à des définitions : définitions, notations...
+\newtheorem{Def}{Définition}[section] % Définitions. Avec l'option "[section]", les définitions (et tout le reste) seront numérotées en fonction de la section courante.
+\newtheorem{Def,Thm}[Def]{Définition et théorème} %Pour ce qui est une définition par un théorème
+\newtheorem{Def,Prop}[Def]{Proposition-définition} %Pour ce qui est une définition par un théorème
+\newtheorem{Not}[Def]{Notation}
+\newtheorem{Hyp}[Def]{Hypothèse} % Notations. Avec l'option "[section]", les définitions (et tout le reste) seront numérotées en fonction de la section courante.
+
+\theoremstyle{plain} % Pour tous ce qui ressemble à des théorèmes.
+\newtheorem{Prop}[Def]{Proposition} % Propositions. Avec l'option "[Def]", les propositions (et tout le reste) seront numérotées collectivement avec les définitions.
+\newtheorem{Fact}[Def]{Fait} % Propositions. Avec l'option "[Def]", les propositions (et tout le reste) seront numérotées collectivement avec les définitions.
+\newtheorem{Lem}[Def]{Lemme} % Lemmes.
+\newtheorem{Thm}[Def]{Théorème} % Théorèmes.
+\newtheorem{Cor}[Def]{Corollaire} % Corollaires.
+\newtheorem{Conj}[Def]{Conjecture} % Conjectures.
+
+
+\theoremstyle{remark} % Pour tout ce qui ressemble à des remarques.
+\newtheorem{Ex}[Def]{Exemple} % Exemples.
+\newtheorem{Exs}[Def]{Exemples} % Exemples.
+\newtheorem{Rq}[Def]{Remarque} % Remarques.
+\newtheorem{Rqs}[Def]{Remarques} % Remarques.
+
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\p}{\mathbb{P}}
+
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Mat}{\operatorname{Mat}}
+\newcommand{\id}{\operatorname{Id}}
+\newcommand{\Ne}{\mathbb{N}^*}
+\newcommand{\Irr}{\mathrm{Irr}(G)}
+\newcommand{\wg}{\widehat{G}}
+\newcommand{\FS}{\mathscr{F}}
+
+%%%%%%%% Les lignes suivantes peuvent être personnalisées.
+
+%% Personnalisation des en-têtes et pieds de pages (ceci n'est qu'un exemple).
+
+%\usepackage{fancyhdr} % Extension pour créer les en-têtes personnalisés.
+%\fancyhf{} % Supprime les en-têtes et pieds prédéfinis.
+%\renewcommand{\headrulewidth}{1pt}
+%\fancyhead[L]{\'ENS de Lyon} % Remplacez "Nom de l'auteur" par une mention qui apparaîtra à gauche de l'en-tête.
+%\fancyhead[R]{Master 2 FEADéP} % Remplacez "Titre du document" par une mention qui apparaîtra à droite de l'en-tête.
+%\fancyfoot[C]{\thepage} % Fait apparaître le numéro de la page au centre du pied de page.
+%\pagestyle{fancy} % Commenter cette ligne si vous ne voulez pas utiliser les en-têtes personnalisés.
+
+%% Titre (à parsonnaliser).
+
+\title{Révisions sur les représentations} % Remplacez "Titre" par votre titre.
+\author{Benoit Loisel} % Remplacez "Auteur" par le nom du ou des auteurs.
+\date{\today}
+
+
+\begin{document}
+\noindent \'ENS de Lyon\hfill Cours d'algèbre \\
+M2 FEADEP\hfill 2018-2019\\
+
+%{\let\newpage\relax\maketitle}
+
+\begin{center}\Large\textsc{Révisions sur les représentations de groupes et caractères}\end{center}
+
+\bigskip
+
+%\section*{Introduction}
+
+%Le but de ce cours est d'apporter quelques compléments d'algèbre linéaires essentiels dans le programme d'agrégations et utiles à la préparation des leçons et des écrits.
+
+\subsection*{Leçons directement concernées (2019)}
+
+\begin{itemize}
+\item[(107)*] Représentations et caractères d'un groupe fini sur un $\mathbb C$-espace vectoriel. Exemples.
+\item[(110)*] Structure et dualité des groupes abéliens finis.  Applications.
+\end{itemize}
+
+\subsection*{Leçons liées, dans lesquelles on peut parler de représentations (2019)}
+
+\begin{itemize}
+\item[(101)] Groupe opérant sur un ensemble. Exemples et applications.
+\item[(102)*] Groupe des nombres complexes de module $1$. Sous-groupes des racines de l'unité. Applications.
+\item[(103)*] Exemples de sous-groupes distingués et de groupes quotients. Applications.
+\item[(104)] Groupes finis. Exemples et applications.
+\item[(105)] Groupe des permutations d'un ensemble fini. Applications.
+\item[(151)] Dimension d'un espace vectoriel (on se limitera au cas de la dimension nie).
+Rang. Exemples et applications.
+\item[(154)] Sous-espaces stables par un endomorphisme ou une famille d'endomorphismes d'un espace vectoriel de dimension finie. Applications.
+\item[(155)] Endomorphismes diagonalisables en dimension finie.
+\item[(183)] Utilisation des groupes en géométrie.
+\end{itemize}
+
+\subsection*{Ce qui est dans le programme}
+
+\begin{itemize}
+\item Représentations d’un groupe fini sur un C-espace vectoriel.
+\item Cas d’un groupe abélien.
+\item Orthogonalité des caractères irréductibles.
+\item Groupe dual.
+\item Transformée de Fourier. Convolution. Cas général.
+\item Théorème de Maschke.
+\item Caractères d’une représentation de dimension finie.
+\item Fonctions centrales sur le groupe, base orthonormée des caractères irréductibles.
+\item Exemples de représentations de groupes de petit cardinal.
+\end{itemize}
+
+\section*{Bibliographie}
+
+\begin{itemize}
+\renewcommand{\labelitemi}{$\bullet$}
+\setlength\itemsep{-1em}
+
+\item W. Fulton et J. Harris, \emph{Representation Theory: A First Course}. Springer Science \& Business Media, 1991.
+
+	Assez complet, mais en anglais.\\
+
+\item G.~Peyré, \emph{L'algèbre discrète de la transformée de Fourier}.
+
+	Très riche pour travailler les représentations et caractères.\\
+
+\item J.-P.~Serre, \emph{Représentations linéaires des groupes finis}.
+
+	Une référence très complète sur les représentations de groupes.\\
+
+\item F.~Ulmer \emph{Théorie des groupes}. \\
+
+\item P.~Caldero et J.~Germoni, \emph{Nouvelles histoires hédonistes de groupes et de géométries}
+
+\end{itemize}
+\vspace{-2em}
+
+\newpage
+
+	Dans ce polycopié, le corps de base est noté $k$. Pour tous les grands théorèmes, on supposera $k=\mathbb{C}$ par défaut, mais dans certains exercices, il s'agira de discuter le cas des autres corps. On fixe un groupe fini $G$.
+	
+	Les espaces vectoriels considérés seront toujours supposés de dimension finie, et les groupes représentés sont supposés finis.
+	
+\section{Représentations linéaires et résultats fondamentaux}
+
+\subsection{Définitions et constructions de base}
+	
+\begin{Def}
+ 	\hspace*{\fill}
+ 	 \begin{itemize}
+ 	 	
+ 	 	\item Une \textbf{représentation linéaire} du groupe $G$ sur un $k$-espace vectoriel $V$ est, de manière équivalente :
+ 	 	\begin{enumerate}[label=(\roman*)]
+ 	 		\item une action à gauche de $G$ sur $V$ par applications linéaires ;
+ 	 		\item un morphisme $\rho : G \rightarrow \mathrm{GL}(V)$.
+ 	 	\end{enumerate}
+ 	
+ 	On note ainsi $(V, \rho)$ une représentation de $G$, très souvent notée $V$ lorsqu'on souhaite rendre implicite le morphisme $\rho$. Sa \textbf{dimension} est la dimension de $V$.
+ 	
+ 	\item Si $V$ est une représentation de $G$ et $W \subset V$ un sous-espace vectoriel de $V$, on dit que $W$ est une \textbf{sous-représentation} de $V$ si l'action de $G$ laisse stable $W$.
+ 	On définit alors l'action de $G$ sur $W$ par restriction.
+ 	 	 	
+ 	 \item Une représentation $V$ de $G$ est \textbf{irréductible} si $V \neq \{0\}$ et il n'existe pas de sous-représentation $W \subset V$ différente de $\{0\}$ et $V$.
+ 	
+ 	\item Une représentation \textbf{complexe} de $G$ est une représentation $\mathbb{C}$-linéaire de $G$.
+	
+	\item La \textbf{représentation triviale} de $G$ est la représentation sur $V=k$ pour laquelle tout élément de $G$ agit comme l'identité.
+ \end{itemize}
+\end{Def}
+
+\begin{Ex}\label{exReprésentations_de_dimension_1}(exercice)
+Soit $\chi:G\rightarrow \C^*$ un morphisme de groupes. Alors $\chi$ induit une représentation $D_\chi=(\C,\rho_\chi)$ de $G$ de dimension $1$, où $\rho_\chi(g)(x)=\chi(g).x$ pour tous $g\in G$, $x\in \C$. Réciproquement, si $(\C,\rho)$ est une représentation de dimension $1$ de $G$, il existe un morphisme $\chi:G\rightarrow \C^*$ tel que $\rho=\rho_\chi$.
+\end{Ex}
+
+\begin{Ex}
+Le groupe fini $G = \mathfrak{S}_3$ admet, entre autres, les représentations complexes suivantes :
+
+(1) la représentation triviale : $\rho_{\mathrm{triv}} : \mathfrak{S}_3 \to \mathrm{GL}_1(\mathbb{C}) = \mathbb{C}^*$ donnée par $\sigma \mapsto \operatorname{id}_{\mathbb{C}} = 1$ ;
+
+(2) la signature : $\sigma \in \mathfrak{S}_3 \mapsto \varepsilon(\sigma) \in \mathbb{C}^*$ ;
+
+(3) les isométries du triangle équilatéral : si $\mathcal{T}$ est un triangle équilatéral de $\mathbb{C}^2$ dont le centre est $0 \in \mathbb{C}^2$, on fait agir $\mathfrak{S}_3$ sur les sommets de $\mathcal{T}$. L'action est fidèle et transitive, et chaque permutation des sommets de $\mathcal{T}$ s'étend en une isométrie linéaire de $\mathbb{C}^2$ qui est, en particulier, un élément de $\mathrm{GL}(\mathbb{C}^2)$.
+Ceci définit donc une représentation linéaire complexe, qui est fidèle et de dimension $2$. Elle est, de plus, irréductible car aucune droite de $\mathbb{C}^2$ n'est globalement stabilisée par les isométries de $\mathcal{T}$.
+
+On veut pouvoir dire qu'à équivalence près (pour une bonne notion d'équivalence), ce sont les seules représentations irréductibles de $\mathfrak{S}_3$.
+\end{Ex}
+
+\begin{Def}
+ 	\hspace*{\fill}
+\begin{itemize}
+ 	\item Une \textbf{application $G$-linéaire} (ou \textbf{$G$-équivariante}) entre deux représentations $(\rho_V,V)$ et $(\rho_W,W)$ de $G$ est une application $k$-linéaire $\varphi$ telle que :
+ 	$$\forall g\in G,\ \forall v\in V,\ \varphi(g \cdot v) = g \cdot \varphi(v) \qquad \text{ ou encore } \qquad \forall g \in G,\ \varphi \circ \rho_V(g) = \rho_W(g) \circ \varphi.$$
+ 	\item On note $\operatorname{Hom}_G(V,W)$ le $k$-espace vectoriel des applications $G$-linéaires de $V$ dans $W$.
+ 	\item Deux représentations $V$ et $W$ de $G$ sont dites \textbf{isomorphes} s'il existe un isomorphisme $G$-équivariant entre $V$ et $W$.
+ 	Ceci définit une relation d'équivalence sur les représentations de $G$.
+ 	
+ 	\item On note $\Irr$ l'ensemble des classes d'isomorphismes de représentations complexes irréductibles de $G$. Par abus de notation, on verra parfois les éléments $\Irr$ comme des représentations de $G$ (et non comme des classes d'isomorphismes de représentation).
+\end{itemize}
+\end{Def}
+
+\begin{exo}
+	\hspace*{\fill}
+	\begin{enumerate}
+	\item Trouver des représentations naturelles des groupes cycliques (voire abéliens) et diédraux.
+	\item Trouver certaines d'entre elles qui sont irréductibles. Que penser du cas des groupes abéliens ?
+	\item Si $G$ agit sur un ensemble fini $X$, considérons formellement une famille $(e_x)_{x \in X}$ et l'espace vectoriel $ V = \oplus_{x \in X} k \cdot e_x$.
+	Donner une structure de représentation de $G$ sur $V$. Quelle forme ont les matrices des éléments de $G$ dans la base canonique ?
+	\end{enumerate}
+\end{exo}
+
+
+
+La définition suivante établit toutes les constructions de base pour les représentations.
+ 	
+\begin{Def,Prop}[Construction de (sous-)représentations à partir de représentations données]
+Soient $V, W$ des représentations d'un groupe fini $G$.
+\begin{enumerate}
+ 	\item On note $V^G = \left\{x \in V,\ \forall g\in G\ g \cdot v = v \right\}$ l'ensemble des éléments de $V$ invariants par toute l'action de $G$. C'est une sous-représentation de $V$ sur laquelle $G$ agit trivialement.
+ 	\item Si $\varphi \in \operatorname{Hom}_G(V,W)$, alors le noyau de $\varphi$ est alors naturellement une sous-représentation de $V$.
+ 	\item Si $\varphi \in \operatorname{Hom}_G(V,W)$, alors l'image de $\varphi$ est alors naturellement une sous-représentation de $W$.
+	\item On définit la \textbf{représentation duale} $V^*$ par :
+	 	$$\forall g \in G,\ \forall \lambda \in V^*,\ \forall v \in V,\ \rho_{V^*}(g)(\lambda) = \left(v \mapsto \lambda\left(g^{-1} \cdot v\right) \right) = \lambda \circ \rho_V\left(g^{-1}\right)$$
+ 	\item On définit la \textbf{représentation somme} $V \oplus W$ sur $V \times W$ par :
+ 	$$\forall g\in G\ \forall (v,w) \in V \times W\ \rho_{V\oplus W}(g)(v,w) = \left(\rho_V(g)(v),\rho_W(g)(w)\right).$$
+ 	\item On définit la \textbf{représentation produit} $V \otimes W$ sur $V \otimes W$ par :
+ 	$$\forall g\in G\ \forall (v,w) \in V \times W\ \rho_{V\otimes W}(g)(v\otimes w) = \rho_V(g)(v)\otimes \rho_W(g)(w) = (g \cdot v) \otimes (g \cdot w)$$
+ 	sur les tenseurs simples, que l'on étend par bilinéarité.
+ 	\item On définit la \textbf{représentation des morphismes} $\mathcal{L}(V,W)$ sur $\mathcal{L}(V,W) \simeq W \otimes V^*$ par :
+ 	$$\forall g\in G\ \forall f \in \mathcal{L}(V,W)\ \rho_{\mathcal{L}(V,W)}(g)(f) = \left(v \in V \mapsto g \cdot f \left( g^{-1} \cdot v\right) \in W\right) = \rho_W(g) \circ f \circ \rho_V(g^{-1}).$$
+\end{enumerate}
+\end{Def,Prop}
+
+\begin{Rq}
+On a $\mathcal{L}(V,W)^G = \operatorname{Hom}_G(V,W)$.
+\end{Rq}
+
+\begin{exo}
+	Vérifier que les formules ci-dessus définissent bien des représentations de $G$.
+\end{exo}
+ 
+ L'exemple suivant est fondamental pour la suite.
+ 
+ \begin{Def}[Représentation régulière]
+ 	\hspace*{\fill}
+ 	
+ 	Soit $G$ un groupe fini. La \textbf{représentation régulière} de $G$, notée $(\rho_{\mathrm{rég}},R_G)$, est, de manière équivalente : 
+ 	
+ 	$\bullet$ La représentation associée à l'action par translation à gauche de $G$ sur lui-même (voir exercice 1).
+ 	
+ 	$\bullet$ L'espace vectoriel $R_G = \mathcal{F}(G,k)$ muni de l'action de $G$ définie par :
+ 	$$\forall f \in \mathcal{F}(G,k),\ \forall g,h \in G,\ \left(g \cdot f\right) (h) = f(g^{-1} h).$$
+ \end{Def}
+ 
+ \begin{exo}
+ 	Justifier que ces deux définitions sont bien équivalentes.
+ \end{exo}
+
+\subsection{Théorèmes fondamentaux}
+
+\begin{Lem}\label{lemProduit_scalaire_invariant}
+Soit $V$ une représentation de $G$. Alors il existe un produit scalaire $\langle \cdot, \cdot  \rangle$ sur $V$ invariant sous l'action de $G$.
+\end{Lem}
+
+\begin{proof}
+Soit $\langle \cdot, \cdot  \rangle_0$ un produit scalaire (quelconque) sur $V$. On définit $\langle \cdot, \cdot \rangle$ sur $V$ par : \[\langle v,v'\rangle =\sum_{g\in G} \langle g.v,g.v'\rangle_0, \forall v,v'\in V.\] Alors $\langle \cdot, \cdot \rangle$ convient.
+\end{proof}
+
+\begin{Lem}\label{lemOrhtogonal_sous_représentation}(exercice)
+Soit $V$ une représentation de $G$. On munit $V$ d'un produit scalaire $G$-invariant. Si $V'\subset V$ est une sous-representation de $V$, alors $V'^\perp$ est une sous-representation de $V$.
+\end{Lem}
+ 
+ \begin{Thm}[Théorème de Maschke]
+ 	\hspace*{\fill}
+ 	
+ 	Soit $G$ un groupe fini. Toute représentation complexe de $G$ se décompose en somme directe de sous-représentations irréductibles.
+ 	
+ \end{Thm}
+ 
+ \begin{proof}
+ 	C'est une conséquence des lemmes~\ref{lemProduit_scalaire_invariant} et~\ref{lemProduit_scalaire_invariant}.
+ \end{proof}
+
+ \begin{exo}
+Montrer que ce théorème n'est pas vrai pour le corps de base $k = \mathbb{F}_p$ et le groupe des matrices triangulaires supérieures de $\mathcal{M}_2(\mathbb{F}_p)$ agissant naturellement sur {$\mathbb{F}_p^2$}.
+\end{exo}
+
+Une question importante se pose maintenant, comme d'habitude : cette décomposition en irréductibles est-elle unique ? 
+
+\begin{Rq}
+	Considérons $V = k^n$ sur lequel $G$ agit trivialement. Toutes les droites de $V$ sont des sous-représentations irréductibles de $G$, et on peut écrire $V$ comme somme directe de droites de plusieurs manières différente. On doit donc parler de décomposition en irréductibles à isomorphisme près. On montrera cette unicité à l'aide de la théorie des caractères, voir proposition ???. On pourrait en fait (exercice) montrer cette unicité en utilisant le lemme de Schur ci-dessous.
+\end{Rq}
+
+
+\begin{Thm}[Lemme de Schur]
+	\hspace*{\fill}
+	
+	Soient $V$ et $W$ des représentations complexes irréductibles et $\varphi : V \rightarrow W$ une application $G$-linéaire.
+	
+	(1) Soit $\varphi$ est un isomorphisme, soit $\varphi=0$.
+		
+	(2) De plus, si $V=W$, alors $\varphi = \lambda \operatorname{id}_V$ pour un certain $\lambda \in \mathbb{C}$.	
+\end{Thm}
+ 
+ \begin{proof}
+ 	(1) Soit $\varphi : V \rightarrow W$ une application $G$-linéaire. Alors, comme dit plus haut, $\ker \varphi$ et $\operatorname{im} \varphi$ sont des sous-représentations, donc par irréductibilité $\ker \varphi = 0$ ou $V$ et $\operatorname{im} \varphi = 0$ ou $W$. Les deux seuls cas compatibles sont $\varphi=0$ ou $\ker \varphi=0$ et $\operatorname{im} \varphi = W$, c'est-à-dire que $\varphi$ est un isomorphisme.
+ 	
+ 	(2) Soit $\lambda\in \C$ une valeur propre de $\varphi$. Alors, $\varphi - \lambda \operatorname{id}_V$ a un noyau non trivial, donc $\varphi  - \lambda \operatorname{id}_V = 0$.
+ \end{proof}
+ 
+ \begin{exo}
+Pour quels corps $k$, le point (1) est-il valable ? Même question pour le point (2).
+ 	\end{exo}
+ 	
+ 	
+\begin{exo}
+Soient $(V,\rho)$ une représentation irréductible de $G$ et $g\in \mathcal{Z}(G)$, où $\mathcal{Z}(G)$ est le centre de $G$.
+
+\quest  Montrer que $\rho(g)$ est une homothétie.
+
+\quest Montrer que si $V$ est fidèle (i.e si $\rho$ est injective), alors $\mathcal{Z}(G)$ est cyclique.
+\end{exo} 	
+
+\begin{Cor} (exercice)
+Soit $V$ une représentation de $G$. On écrit $V=\bigoplus_{i=1}^r W_i^{n_i}$, où pour tout $i\in  \llbracket 1,r\rrbracket$, $W_i$ est une représentation irréductible de $G$ et pour tous $i\neq j$, $W_i \not \simeq W_j$.	Montrer que 
+	$\displaystyle \operatorname{End}_G(V) \simeq \prod_{i=1}^r \mathcal{M}_{n_i} (\mathbb{C})$.
+\end{Cor}
+
+
+\begin{exo}[Représentation standard de $\mathfrak{S}_n$]
+	\hspace*{\fill}
+	
+	Considérons le groupe de permutations $\mathfrak{S}_n$ et $V = \mathbb{C}^n$ muni de l'action de $\mathfrak{S}_n$ définie par permutation des coordonnées, c'est-à-dire $\sigma \cdot (x_1, \cdots, x_n) = (x_{\sigma^{-1}(1)}, \cdots, x_{\sigma^{-1}(n)})$.
+\begin{enumerate}
+\item Montrer que ceci définit bien une représentation linéaire de $\mathfrak{S}_n$.
+\item Trouver une droite $D$ et un hyperplan $H$ qui sont des sous-représentations de $V$ telles que $V = D \oplus H$.
+\item Montrer que $H$ est irréductible, et conclure.
+\end{enumerate}
+On appelle $H$ muni de cette action la \textbf{représentation standard de $\mathfrak{S}_n$}.
+\end{exo}
+
+\subsection{Représentations complexes des groupes abéliens finis}
+
+Tout d'abord, observons le fait suivant pour un groupe fini, non nécessairement abélien.
+
+\begin{Lem}\label{lemme:diagonalisation}
+Soit $(\rho,V)$ une représentation d'un groupe fini $G$ d'ordre $n$.
+Alors, pour tout $g\in G$, l'endomorphisme $\rho(g)$ est diagonalisable et ses valeurs propres sont des racines $n$-èmes de l'unité.
+\end{Lem}
+
+\begin{proof}
+Par le théorème de Lagrange, l'ordre de $g$ divise $n$.
+L'endomorphisme $\rho(g)$ est donc annulé par le polynôme $X^n - 1$ qui est scindé à racines simples dans $\mathbb{C}$.
+Il est donc diagonalisable et ses valeurs propres sont des racines de $X^n - 1$.
+\end{proof}
+
+On note $\widehat{G}$ l'ensemble des caractères linéaires de $G$ (i.e l'ensemble des morphismes de groupes de $G$ dans $\C^*$). Ce groupe est appelé le \textbf{groupe dual} de $G$. Pour $\chi \in \widehat{G}$, on définit une représentation $D_\chi=(\C,\rho_\chi)$ par $\rho_\chi(g)(x)=\chi(g).x$ si $g\in G$ et $x\in \C$.
+
+\begin{Prop}	
+	Soit $G$ un groupe abélien fini.
+	
+	Toute représentation complexe irréductible de $G$ est de dimension $1$. 
+	
+	
+	
+	Plus précisément, l'application de $\widehat{G}$ dans $\Irr$  envoyant chaque $\chi\in \widehat{G}$ sur la classe de  $D_\chi$ est une bijection. 
+\end{Prop}
+
+\begin{proof}
+
+	Tout d'abord, n'importe quelle représentation de dimension $1$ d'un groupe est forcément irréductible, car elle n'admet déjà pas de sous-espace vectoriel strict non trivial. Il s'agit donc seulement de prouver que toutes les représentations irréductibles de $G$ sont de dimension $1$ lorsque $G$ est abélien.
+	
+	Soit $(V,\rho)$ une représentation de $G$.
+	Comme $G$ est abélien, les endomorphismes $\rho(g)$ pour $g \in G$ commutent deux à deux.
+	Comme ils sont diagonalisables par le lemme \ref{lemme:diagonalisation}, ils sont codiagonalisables.
+	Il existe donc une base de diagonalisation $(e_1, \cdots, e_k)$ commune à tous les $\rho(g)$, et chaque droite $\mathbb{C} \cdot e_i$ est une sous-représentation de $V$.
+	Ainsi, si $V$ est irréductible, ce doit être une droite. 
+	
+	On vérifie (exercice) que toute représentation irréductible de $G$ est isomorphe à un $D_\chi$ pour $\chi\in \widehat{G}$.
+	
+	Soient $\chi,\chi'\in \widehat{G}$ tels qu'il existe un isomorphisme de représentations $\varphi: D_\chi\rightarrow D_{\chi'}$. Comme $\varphi:\C\rightarrow \C$ est un isomorphisme d'espaces vectoriels, on peut supposer que $\varphi=\mathrm{Id}$. On a alors pour tous  $g\in G$ et $x\in \C$ :  \[\varphi(\rho_\chi(g).x)=\chi(g).x=\rho_{\chi'}(g).\varphi(x)=\chi'(g).x,\] car $\varphi$ est un $G$-morphisme. On a donc $\chi=\chi'$, ce qui conclut la preuve de la proposition.
+\end{proof}
+
+
+
+\section{Caractères, fonctions centrales et tables}
+
+Ici, encore une fois, on fixe $\mathbb{C}$ comme corps de base, mais beaucoup de choses seraient valables en plus grande généralité. %, ce sera apparent dans les exercices.
+
+\begin{Def}[Caractère d'une représentation]
+	\hspace*{\fill}
+	
+	Soit $(V,\rho)$ une représentation complexe de $G$. On appelle \textbf{caractère de $V$}, souvent noté $\chi_V$, la fonction $\chi_V : G \rightarrow \mathbb{C}$ définie pour tout $g \in G$ par 
+	$\chi_V(g) := \operatorname{Tr} \rho(g)$.
+\end{Def}
+
+\begin{Rq}
+	Attention : ce caractère, contrairement aux caractères linéaires mentionnés plus haut, n'a aucune raison d'être un morphisme de groupes en général !
+	
+	Remarquer aussi que le caractère de la représentation triviale est la fonction toujours égale à $1$ sur $G$, on la notera souvent $\mathbf{1}$.
+\end{Rq}	
+
+\begin{exo}
+	Montrer que lorsque $V$ est de dimension $1$, le caractère $\chi_V$ définit bien un morphisme de groupes $G \rightarrow \mathbb{C}^*$. Dans ce cas et ce cas seulement, on parle de \textbf{caractère linéaire} ou de \textbf{caractère abélien}.
+\end{exo}
+
+
+\begin{exo}
+	Vérifier que lorsque deux représentations de $G$ sont isomorphes, elles ont le même caractère.
+	
+\end{exo}
+
+\subsection{Propriétés de base des caractères}
+\begin{Def}[Fonctions centrales]
+	\hspace*{\fill}
+	
+	Pour tout groupe fini $G$, on appelle \textbf{fonction centrale sur $G$} toute fonction $f : G \rightarrow \mathbb{C}$ telle que pour tous $g,h \in G$, on a $f(gh g^{-1})=f(h)$,
+	autrement dit toute fonction $f : G \rightarrow \mathbb{C}$ constante sur les classes de conjugaison.
+	
+	 On notera $\mathcal{C}(G)$ le $\mathbb{C}$-espace vectoriel des fonctions centrales sur $G$, de dimension $c(G)$ égale au nombre de classes de conjugaison de $G$.
+\end{Def}
+
+\begin{Rq}
+ On définit ces fonctions car tout caractère de représentation est une fonction centrale : en effet, si $(V,\rho)$ est une représentation de $G$, on a 
+	$$\chi_V(ghg^{-1}) = \operatorname{Tr} \rho(ghg^{-1}) = \operatorname{Tr} \rho(g) \rho(h) \rho(g)^{-1} = \operatorname{Tr} \rho(h) = \chi_V(h).$$
+\end{Rq}
+
+\begin{Prop}\label{propCaractères_opérations_usuelles}
+Pour toutes représentations $V$ et $W$ de $G$, on a : 
+	\begin{eqnarray*}
+	\chi_{V \oplus W} & = & \chi_V + \chi_W \\
+	\chi_{V \otimes W} & = & \chi_V \cdot \chi_W \\
+	\chi_{\mathcal{L}(V,W)} & = & \overline{\chi_V} \cdot \chi_W \\
+	\chi_{V^*} & = & \overline{\chi_V} \\
+	\chi_V(e) & = & \dim V.
+	\end{eqnarray*}
+\end{Prop}
+
+\begin{proof}
+	Pour la somme directe, c'est immédiat (trace des matrices diagonales par blocs), le cas $V^*$ est un cas particulier de $\operatorname{Hom}(V,W)$ appliqué à $W$ la représentation triviale (de caractère $\mathbf{1}$), et on peut démontrer le résultat pour le produit tensoriel en utilisant le $G$-isomorphisme canonique entre $V \otimes W$ et $\operatorname{Hom}(V^*,W)$.
+	
+	Il reste donc seulement à trouver la formule pour $\mathcal{L}(V,W)$.
+	Soit $g \in G$. Comme $\rho_V(g)$ et $\rho_W(g)$ sont diagonalisables, d'après le lemme \ref{lemme:diagonalisation}, on choisit $(e_1, \cdots, e_m)$ une base de vecteurs propres de l'action de $g$ sur $V$, et $(f_1, \cdots, f_n)$ une base de vecteurs propres de l'action de $g$ sur $W$, et $(\lambda_1, \cdots, \lambda_m)$, $(\mu_1, \cdots, \mu_n)$ les valeurs propres associées, de sorte que 
+	\[
+	\forall i \in \llbracket 1,  m\rrbracket,\ \forall j \in \llbracket 1, n\rrbracket,\ g \cdot e_i = \lambda_i e_i \quad \text{ et }\quad g \cdot f_j = \mu_j f_j.
+	\]
+	
+	Définissons alors, pour tous $i \in\llbracket 1,  m\rrbracket$, tout $ j \in \llbracket 1, n\rrbracket$, l'endomorphisme $\varphi_{i,j} \in \mathcal{L}(V,W)$ qui envoie $e_i$ sur $f_j$ et est nul sur le reste de la base.
+	Ces morphismes forment clairement une base de $\operatorname{Hom}(V,W)$, étudions-y la trace de l'action de $g$.
+	Pour tout $k \in \llbracket 1, m\rrbracket$, on a  : 
+	\[
+	(g \cdot \varphi_{i,j}) (e_k) = g \cdot (\varphi_{i,j}(g^{-1} \cdot e_k) = g \cdot (\lambda_k^{-1} \varphi_{i,j} (e_k)).
+	\]
+	Si $i \neq k$, ceci donne $0$ et si $i=k$, on a alors $g \cdot (\lambda_i^{-1} f_j) = \lambda_i^{-1} \mu_j f_j$.
+	Nous venons donc de montrer que pour tous $i,j$, on a : 
+	\[
+	g \cdot \varphi_{i,j} = \lambda_i^{-1} \mu_j  \varphi_{i,j},
+	\]
+	ainsi la base construite est diagonale pour l'action de $g$, et 
+	\[
+	\chi_{\mathcal{L}(V,W)} (g) = \sum_{i=1}^m \sum_{j=1}^n \lambda_i^{-1} \mu_j = \overline{\chi_V(g)} \chi_W(g).
+	\]
+	En effet, les valeurs propres sont toutes des racines de l'unité, d'après le lemme \ref{lemme:diagonalisation}, donc égales à l'inverse de leur conjuguée, de sorte que 
+	\[
+	\sum_{i=1}^m \lambda_i^{-1} = \sum_{i=1}^m \overline{\lambda_i} = \overline{\chi_V(g)}.
+	\]
+	
+	Enfin, la formule pour $\chi_V(e)$ est immédiate vu la trace de la matrice identité.
+\end{proof}
+
+\begin{exo}
+
+	Soit $G$ agissant sur un ensemble fini $X$ et $V$ la représentation linéaire associée à cette action.
+	\begin{enumerate}
+	\item Calculer $\chi_V$ en fonction des points fixes de $X$ par les éléments de $G$. 
+	\item En déduire : 
+	\begin{enumerate}
+	\item Le caractère associé à la représentation standard de $\mathfrak{S}_n$
+	\item Le caractère associé à la représentation régulière de $G$.
+	\end{enumerate}
+	\end{enumerate}
+\end{exo}
+
+\begin{exo}
+\begin{enumerate}
+ \item Dans le cas d'un sous-corps de $\mathbb{C}$, les formules pour les caractères sont-elles toujours vraies ?
+ \item Pour un corps quelconque, par quoi doit on remplacer $\overline{\chi_V}$ ?
+\end{enumerate}
+\end{exo}
+
+
+
+\subsection{Résultats fondamentaux et relations entre caractères}
+
+Le grand thème de cette section est que le caractère d'une représentation donne toute l'information nécessaire sur celle-ci, et nous allons montrer, un à un, tous les résultats en ce sens.
+
+\begin{Prop}\label{propDimension_espace_invariant}
+	Soit $(\rho,V)$ une représentation complexe de $G$.	
+	Définissons 
+	$\displaystyle \varphi = \frac{1}{|G|} \sum_{g \in G} \rho(g) \in \operatorname{End}(V)$.
+	
+	Alors $\varphi$ est en fait un projecteur de $V$ sur $V^G$ et, par conséquent, on a :
+	$$ \operatorname{dim} V^G = \operatorname{Tr}(\varphi) = \frac{1}{|G|} \sum_{g \in G} \chi_V(g).$$
+\end{Prop}
+
+\begin{proof}
+	Il est évident que $\varphi$ est égal à l'identité sur $V^G$ (car chaque $\rho(g)$ y agit comme l'identité par définition de ce sous-espace).
+	Vérifions que l'image de $\varphi$ est incluse dans $V^G$.
+	Pour tout $v \in V$, tout $h \in G$, on a :
+	\[
+	h \cdot (\varphi(v)) = \frac{1}{|G|} \sum_{g \in G} h \cdot (g \cdot v) = \frac{1}{|G|} \sum_{g' \in h.G} g' \cdot v = \varphi(v)
+	\]
+	On en déduit que $\varphi^2 = \varphi$ et que l'image de $\varphi$ est $V^G$.
+	C'est donc bien un projecteur de $V$ sur $V^G$.
+	Pour les projecteurs, on sait que leur rang est égal à leur trace, d'où le résultat.
+\end{proof}
+
+\begin{exo}(cf XIII.1.7 de NH2G2) 
+
+\hspace*{\fill}
+Soit $k$ un corps de caractéristique nulle ou ne divisant pas $G$. S'inspirer de la proposition~\ref{propDimension_espace_invariant} pour généraliser le théorème de Maschke à toute $k$-représentation de dimension finie. 
+\end{exo}
+
+
+On a maintenant suffisamment de résultats préliminaires pour établir les premières relations non triviales entre caractères, qui seront numérotées, mais pas dans l'ordre d'obtention (le but étant que la numérotation finale reflète le plus clairement l'ordre d'utilisation en pratique).
+
+\begin{Def}
+	Soit $G$ un groupe fini. On munit $\mathcal{C}(G)$ du produit scalaire hermitien $\langle \cdot, \cdot \rangle_G$ défini  par : \[\forall f,f'\in \mathcal{G},\langle f, f' \rangle_G := \frac{1}{|G|} \sum_{g \in  G} \overline{f(g)} f'(g).\]
+\end{Def}
+
+\begin{Lem}\label{lemOrthogonalité_caractères}
+La famille $(\chi_V)_{V\in \Irr}$ est une famille orthonormale de $\mathcal{C}(G)$.
+\end{Lem}
+
+\begin{proof}
+Soient $V,W\in \Irr$. On rappelle que $\mathcal{L}(V,W)^{G}=\Hom_G(V,W)$. Par la proposition~\ref{propCaractères_opérations_usuelles} on a donc : \[\dim \Hom_G(V,W)=\frac{1}{|G|}\sum_{g\in G}\chi_{\mathcal{L}(V,W)}(g)=\frac{1}{|G|}\sum_{g\in G}\overline{\chi}_V(g)\chi_W(g).\] On conclut avec le lemme de Schur.
+\end{proof}
+
+On en déduit que $|\Irr|\leq \dim \mathcal{C}(G)<\infty$. On écrit $\Irr=\{W_1,\ldots,W_r\}$, avec $r=|\Irr|$.
+
+\begin{Prop}(exercice)
+ Soit $V$ une représentation  de $G$. Par le théorème de Maschke, il existe $(n_i)\in \N^r$ tel que $V\simeq \bigoplus_{i\in \llbracket 1,r\rrbracket}W_i^{n_i}$. On a alors $\chi_V=\sum_{i\in \llbracket 1,r\rrbracket} n_i\chi_{W_i}$. Alors $n_i=\langle \chi_V,\chi_{W_i}\rangle$, pour tout $i\in \llbracket 1,r\rrbracket$. En particulier, la famille $(n_i)_{i\in \llbracket 1,r\rrbracket}$ est unique et $V$ est irréductible si et seulement si $|\chi_V|^2=1$ ($=\langle \chi_V,\chi_V\rangle$).
+\end{Prop}
+
+
+
+Nous avons donc, grâce aux caractères, une manière explicite de décomposer une représentation en irréductibles, pour peu qu'on connaisse la liste (finie) de celles-ci et leurs caractères. 
+
+Un autre miracle se produit alors, qui nous permet de donner des relations entre les caractères de représentations irréductibles, résumées dans la proposition suivante.
+
+\begin{Prop}
+	Soit $R_G$ la représentation régulière de $G$ (définie en première partie), de caractère noté $\chi_{R_G}$. Alors : 
+	\begin{enumerate}
+	\item pour tout $g \in G$, on a
+	$\displaystyle \chi_{R_G}(g) = \left\{ \begin{array}{cl} |G| & {\text{ si }} g=1, \\
+	0 & {\text{ sinon. }} \end{array} \right.$. En particulier, on a la relation :  \[
+\sum_{i=1}^r \dim W_i \cdot \chi_{W_i} (g) = 0  \qquad (R5).\]
+	
+	\item On a 
+	$\displaystyle R_G \simeq \bigoplus_{i=1}^r W_i^{\dim W_i}$,
+	autrement dit chaque représentation irréductible apparait exactement autant de fois que sa dimension dans la décomposition de la représentation régulière.
+	
+	\item En particulier, on a \qquad $\displaystyle \sum_{i=1}^r \dim(W_i)^2 = |G| \qquad (R1)$.
+	
+	
+\end{enumerate}
+\end{Prop}
+
+\begin{proof}
+	$1.$ : c'est évident pour $g=1$, et sinon chaque élément non trivial de $G$ induit une translation de la base canonique (donc sans point fixe), de sorte que les coefficients diagonaux de $\rho(g)$ dans cette base sont tous nuls, la trace est donc nulle.
+	
+	$2.$ : la formule de $1.$ donne
+	$\displaystyle \langle \chi_{R_G}, \chi_{W_i} \rangle_G = \frac{1}{|G|} |G| \chi_{W_i} (e) = \dim W_i,$
+	et le reste découle de la proposition précédente. 
+	
+	$3.$ : on a $|\chi_{R_G}|^2=\sum_{i=1}^r (\dim W_i)^2=\frac{1}{|G|}\sum_{g\in G} |\chi_{R_G}(g)|^2=|G|$.
+\end{proof}
+
+On a donc établi un certain nombre de relations (linéaires ou quadratiques, essentiellement) entre les caractères des représentations irréductibles, mais il reste à comprendre combien on en a au juste. C'est le dernier grand résultat théorique de cette section, dû à Frobenius.
+
+\begin{Thm}[Frobenius]
+La famille $(\chi_V)_{V\in \Irr}$ est une base orthonormale de $\mathcal{C}(G)$. En particulier $|\Irr|=c(G)$, où $c(G)$ est le nombre de classes de conjugaison de $G$.
+\end{Thm}
+
+\begin{proof}
+	Par le lemme~\ref{lemOrthogonalité_caractères}, il suffit de montrer que le sous-espace vectoriel $\mathcal{C}'$ engendré par les $\chi_{V}$, $V\in \Irr$ $\mathcal{C}'$ est égal à $\mathcal{C}(G)$. 	 
+	Pour ceci, on va montrer que $\mathcal{C}'^\perp=\{0\}$.
+	 
+	 Soit $f\in \mathcal{C}'^\perp$.
+	Soit $(\rho,V)$ une représentation de $G$. Soit
+	 $\displaystyle \varphi_{V,f} := \sum_{g \in G} \overline{f(g)} \rho(g)$.
+	 
+	 
+	Montrons que cet endomorphisme est $G$-équivariant. Soient $h \in G$ et $x\in V$. Alors (pour l'action habituelle de $G$ sur $\mathcal{L}(V,V)$), \[(h \cdot \rho(g))(x)=h.\rho(g)(h^{-1}.x)=\rho(h)\circ\rho(g)\circ\rho(h^{-1}).x=\rho(hgh^{-1}).x,\]  donc  $h.\rho(g)=\rho(hgh^{-1})$. On a donc
+	$$h \cdot \varphi_{V,f} = \sum_{g \in G} \overline{f(g)} \rho(hgh^{-1}) = \sum_{g' \in G} \overline{f(h^{-1} g' h)} \rho(g') =  \sum_{g' \in G} \overline{f(g')} \rho(g') = \varphi_{V,f}.$$
+	
+Supposons $V$ irréductible. Par le lemme de Schur, $\varphi_{V,f}$ est une homothérie, de rapport $\frac{\mathrm{tr}(\varphi_{V,f})}{\dim V}$.
+	Par  hypothèse sur $f$, 
+	$\frac{\mathrm{tr}(\varphi_{V,f})}{\dim V}=\displaystyle \frac{1}{\dim V} \sum_{g \in G} \overline{f(g)} \chi_{V}(g) = 0$.
+	Lorsque $V=R_G$ est la représentation régulière, l'endomorphisme $\varphi_{V,f}$ se décompose sur chaque copie de $W_i$ comme une homothétie indiquée ci-dessus, donc $\varphi_{R_G,f} = 0$.
+	En particulier, si $(e_g)_{g \in G}$ est la base canonique de $R_G$, on a $\varphi_{V,f}(e_1)=\displaystyle \sum_{g \in G} \overline{f(g)} e_{g} = 0$, donc $f=0$.
+\end{proof}
+
+\begin{Ex}
+On suppose que toutes les représentations irréductibles de $G$ sont de dimension $1$. Montrer que $G$ est abélien.
+\end{Ex}
+
+Soit $\mathfrak{X}$ l'ensemble des caractères de représentations irréductibles de $G$ ($\mathfrak{X}=\{\chi_{W_i}|\ i\in \llbracket 1,r \rrbracket\}$).
+
+Les conséquences du théorème de Frobenius vont nous donner les dernières relations utiles entre caractères irréductibles.
+
+\begin{Prop}
+	Pour tout $g \in G$, on note $c(g)$ la classe de conjugaison de $g$. Alors, on a :
+	
+	$$\sum_{\chi \in \mathfrak{X}} |\chi(g)|^2 = \frac{|G|}{|c(g)|}, \qquad (R3)$$
+	où 
+	
+	De plus, si $g,h \in G$ ne sont pas conjugués, on a :
+	$$\sum_{\chi \in \mathfrak{X}} \overline{\chi(g)} \chi(h) = 0. \qquad (R2)$$
+\end{Prop}
+
+\begin{proof}
+	 Comme les caractères sont des fonctions centrales, pour toute classe de conjugaison $C$ de $G$, chaque $\chi$ est constant sur $C$ et on note $\chi(C)$ sa valeur sur ses éléments. Notons $\mathfrak{C}$ l'ensemble des classes de conjugaison de $G$ et considérons la matrice 
+	 \[
+	 \left( \chi(C) \frac{|C|}{|G|}\right)_{\chi \in \mathfrak{X},\ C \in \mathfrak{C}}.
+	 \]
+	 
+	 Le théorème de Frobenius nous dit que c'est une matrice carrée et, par orthonormalité des caractères irréductibles, on sait que ses lignes sont orthonormales. En effet, pour $V,V'$ irréductibles non isomorphes, on a :
+	 \[
+	 \sum_{C \in \mathfrak{C}} |\chi_V(C)|^2 \frac{|C|}{|G|} = \frac{1}{|G|} \sum_{g \in G} |\chi_V(g)|^2 = \langle \chi_V,\chi_V \rangle_G = 1
+	 \]
+	 et, de même, on a :
+	 \[
+	 \sum_{C \in \mathfrak{C}} \overline{\chi_V(C)} \chi_{V'}(C) \frac{|C|}{|G|} = 0.
+	 \]
+	 
+	 Une matrice complexe carrée dont les lignes sont orthonormales est automatiquement unitaire.
+	 Donc ses colonnes sont également orthonormales ! En écrivant l'orthonormalité des colonnes, on obtient directement les deux relations $(R2)$ et $(R3)$.
+\end{proof}
+
+
+\subsection{Bilan des relations et tables de caractères}
+
+Soit $G$ un groupe fini. On note $X$ l'ensemble des caractères de représentations irréductibles et $\mathfrak{C}$ l'ensemble des classes de conjugaison de $G$. 
+
+Pour bien comprendre les représentations de $G$, on se donne pour objectif d'écrire sa {\bf table des caractères}. C'est le tableau de toutes les valeurs de $\chi(C)$, où $\chi$ parcourt $\mathfrak{X}$ et $C$ parcourt $\mathfrak{C}$. Pour la présenter, on met dans la première ligne des représentants des classes de conjugaison, et leur cardinal, et dans la première colonne les caractères de représentations irréductibles. Tout le travail précédent nous donne alors les relations suivantes : 
+
+\begin{itemize}
+	\item[$(R0)$] Il y a autant de lignes que de colonnes.
+	
+	\item[$(R1)$] La somme des carrés des dimensions des représentations irréductibles est $|G|$, autrement dit 
+	\[
+	\sum_{\chi \in \mathfrak{X}} \chi(1)^2 = |G|.
+	\]
+	\item[$(R2)$] Pour $C,C'$ deux classes de conjugaison distinctes,
+	\[
+	\sum_{\chi \in \mathfrak{X}} \overline{\chi(C)} \chi(C') = 0,
+	\]
+	autrement dit les colonnes de la table des caractères sont orthogonales.
+	\item[$(R3)$] Pour toute classe de conjugaison $C$, 
+	\[
+	\sum_{\chi \in \mathfrak{X}} |\chi(C)|^2 = \frac{|G|}{|C|},
+	\]
+	autrement dit on connaît chaque norme de colonne de la table (ce n'est pas forcément $1$).
+	
+	\item[$(R4)$] Pour deux caractères $\chi,\chi'$ distincts, 
+	\[
+	\sum_{C \in \mathfrak{C}} |C| \overline{\chi(C)} \chi'(C) = 0,
+	\]
+	autrement dit les lignes de la table des caractères sont orthogonales {\bf avec pondération suivant les classes}.
+	
+	\item[$(R5)$] Pour un caractère $\chi$ de $X$, 
+	\[
+	\sum_{C \in \mathfrak{C}} |C| |\chi(C)|^2 = |G|,
+	\]
+	donc on connaît la norme de chaque ligne.
+	
+	
+\end{itemize}
+
+\begin{exo}
+	Ecrire les tables de caractères des $\mathbb{Z}/n\mathbb{Z}$.
+\end{exo}
+
+\begin{exo}
+Retrouver les tables de caractères de ces quelques petits groupes de permutation.
+\[
+\begin{array}{c|c|c|c}
+\mathfrak{S}_3 & 1 & 3 & 2 \\
+& 1 & (1 \, 2) & (1 \, 2 \, 3) \\
+\hline
+1 & 1 & 1 & 1 \\
+\hline
+\varepsilon & 1 & -1 & 1 \\
+\hline
+\chi_{\rm{std}} & 2 & 0 & -1 
+\end{array}
+\]
+
+\[
+\begin{array}{c|c|c|c|c}
+\mathfrak{A}_4 & 1 & 4 & 4 & 3 \\
+& 1 & (1 \, 2 \, 3) & (1 \, 3 \, 2) & (1 \, 2) (3 \, 4) \\
+\hline
+1 & 1 & 1 & 1 & 1 \\
+\hline
+\chi & 1 & j & j^2 & 1 \\
+\hline
+\chi^2 & 1 & j^2 & j & 1 \\
+\hline 
+\chi_3 & 3 & 0 & 0 & -1
+\end{array}
+\]
+
+\[
+\begin{array}{c|c|c|c|c|c}
+\mathfrak{S}_4 & 1 & 6 & 8 & 3 & 6 \\
+& 1 & (1 \, 2) & (1 \, 2 \, 3) & (1 \, 2) (3 \, 4) & (1 \, 2 \, 3 \, 4) \\
+\hline
+1 & 1 & 1 & 1 & 1 & 1\\
+\hline
+\varepsilon & 1 & -1 & 1 & 1 & -1 \\
+\hline
+\chi_2 & 2 & 0 & -1 & 2 & 0  \\
+\hline 
+\chi_{\rm{std}} & 3 & 1 & 0 & -1 & -1 \\
+\hline
+\chi_{\rm{std}} \cdot \varepsilon & 3 & -1 & 0 & -1 & 1 
+\end{array}
+\]
+\end{exo}
+
+\subsection{Une application de la table des caractères}
+
+\paragraph{Extrait du rapport du jury 2018 sur la leçon 107 sur les représentations :} « il faut savoir tirer
+des informations sur le groupe à partir de sa table de caractères ».
+
+On peut se demander quelles informations on peut tirer d'une table des caractères sur le groupe $G$. Les tables de caractères de $D_4$ et $H_8$ sont identiques (exercice), alors que $D_4$ et $H_8$ ne sont pas isomorphes donc la table de caractère ne caractérise pas entièrement le groupe. On peut par contre déduire des informations sur les sous-groupes distingués de $G$ et notamment sur sa simplicité. Le théorème ci-dessous peut faire l'objet d'un développement.
+
+\begin{Lem}(exercice, cf Ulmer 17.20)
+Soient $(V,\rho)$ une représentation de $G$ de caractère $\chi_V$. Alors \[\ker(\rho)=\{g\in G|\ \chi(g)=\dim V\}.\]
+
+\end{Lem}
+
+Si $\chi$ est le caractère d'une représentation $(V,\rho)$ de $G$, le \textbf{noyau de }$\chi$ est le noyau de $\rho$, c'est à dire l'ensemble des $g\in G$ tels que $\chi(g)=\chi(1)$.
+
+\begin{Thm}(cf Ulmer 17.22)
+Soit $G$ un groupe fini ayant $m$ classes de conjugaison et $\chi_1,\ldots,\chi_m$ les caractères irréductibles de $G$. Alors tout sous-groupe distingué de $G$ est de la forme $\bigcap_{j\in J} \ker \chi_j$ pour $J\subset \llbracket 1,m\rrbracket$. 
+\end{Thm}
+
+
+\begin{Cor}
+Le groupe $G$ est simple si et seulement si tout caractère irréductible non trivial de $G$ a un noyau trivial.
+\end{Cor} 
+
+\section{Exercices supplémentaires}
+
+\begin{exo}
+Soit $V$ une représentation irréductible de $G$ (exceptionnellement on ne suppose pas que $V$ est de dimension finie a priori). Montrer que $V$ est de dimension finie.
+\end{exo}
+
+\begin{exo}
+Soient $n\in \N^*$ et $\chi$ le caractère d'une représentation de $\mathfrak{S}_n$. Montrer que $\chi(\mathfrak{S}_n)\subset \R$.
+\end{exo}
+
+\begin{exo}
+Soit $\chi:G\rightarrow\C$ un caractère de $G$ vérifiant $\chi(g)=0$ pour tout $g\in G\setminus \{1\}$. Montrer que $\chi$ est un multiple du caractère de la représentation régulière.
+\end{exo}
+
+\begin{exo}
+Soient $(V,\rho)$ une représentation de $G$ et  soit $\chi_V$ son caractère. Montrer que $\ker \rho=\{g\in G|\chi(g)=\chi(1)\}$.
+\end{exo}
+
+\begin{exo}
+Déterminer la table des caractères de $\Z/2\Z\times \Z/2\Z$.
+\end{exo}
+
+\begin{exo}
+Déterminer les tables de caractères de $D_4$ et de $H_8$. 
+\end{exo}
+
+\begin{exo}
+On considère une base $(e_\sigma)_{\sigma\in \mathfrak{S}_3}$ de $\C^6$. Soit $\rho$ la représentation de $\mathfrak{S}_3$ définie par $\sigma.e_{\sigma'}=e_{\sigma\sigma'\sigma^{-1}}$, pour tous $\sigma,\sigma'\in \mathfrak{S}_3$. Décomposer $\rho$ en somme directe de représentations irréductibles.
+\end{exo}
+
+\begin{exo}
+Soit $n\in \N_{\geq 3}$. Donner la table de caractère du groupe diédrale $D_n$.
+\end{exo}
+
+\begin{exo}
+Soient $p,q\in \N$ deux nombres premiers avec $q>p$. On suppose qu'il existe un groupe $G$ non abélien d'ordre $pq$.
+
+\quest Montrer que $D(G)$ est l'unique $q$-Sylow de $G$.
+
+\quest Déterminer les caractères linéaires de $G$.
+
+\quest Déterminer le nombre et les degrés des caractères irréductibles de $G$.
+\end{exo}
+
+
+\begin{exo} [Représentation de permutation]
+
+Soit $G$ un groupe fini agissant sur l'ensemble fini $X$. On appelle représentation de permutation associée à $X$ la représentation sur l'espace vectoriel $V_X= \bigoplus_{x\in X}\mathbb C e_x$ donnée par $\rho(g)(e_x)=e_{gx}$.
+
+
+\quest Soit $g\in G$, montrer que $\chi_{V_X}$ est le nombre de points fixes pour l'action de $g$ sur $X$. 
+
+\quest Montrer que $\frac{1}{\operatorname{Card}(G)}\sum_{g\in G}\chi_{V_X}(g)$ est égal au nombre d'orbites de l'action de $G$ sur $X$.
+
+\quest On suppose maintenant que $X$ est de cardinal $>1\ $. Montrer que $V_X$ n'est pas une représentation irréductible de $G$ : on a une décomposition $V_X={\bf 1}\oplus W$, où {\bf 1} désigne la représentation triviale. On donnera une base de {\bf 1} et de $W$.
+
+\quest Calculer $\langle \chi_{V_X}, \chi_{V_X}\rangle$.
+
+\quest En déduire que $W$ est irréductible si et seulement si $X$ est de cardinal 2 ou $G$ agit 2-transitivement sur $X$ (c'est-\`a-dire que pour tous couples $(x,y),(x',y')$ tels que $x\neq y$ et $x'\neq y'$, il existe $g$ dans $G$ tel que $(x,y)=(g.x', g.y')$).
+\end{exo}
+
+
+\begin{exo}
+Montrer que $|\widehat{G}|=|G/D(G)|$.
+\end{exo}
+
+\section{Dualité des groupes abéliens finis et transformée de Fourier discrète}
+
+Soit $G$ un groupe fini. Un \textbf{caractère linéaire} de $G$ est un morphisme de $G$ dans le groupe multiplicatif $\C^*$. On note $\widehat{G}$ l'ensemble des caractères de $G$. Si $\chi_1,\chi_2\in \wg$, on définit $\chi_1.\chi_2$ par $(\chi_1.\chi_2)(g)=\chi_1(g)\chi_2(g)$, si $g\in G$. Le groupe $(\wg,.)$ est le \textbf{groupe dual de $G$.}
+
+\begin{Rq}
+Soient $n=|G|$ et $\mathbb{U}_n=\{z\in \C|z^n=1\}$. Alors $\wg=$ est l'ensemble des morphismes de $G$ dans $\mathbb{U}_n$. Il est en particulier fini.
+\end{Rq}
+
+\begin{Def}
+On note $\C[G]$ l'espace vectoriel des fonctions de $G$ dans $\C$. On le munit du produit scalaire hermitien définit par : \[\forall(f,g)\in \C[G]^2,\langle f,g\rangle=\frac{1}{|G|}\sum_{x\in G}f(x)\overline{g}(x).\]
+\end{Def}
+
+\begin{Rq}
+Ce produit hermitien présente des similitudes avec le produit scalaire canonique sur $L^2(\R)$. Une des propriétés communes de ces deux produits scalaires est l'invariance par translation : si on note, pour $f\in \C[G]$ (resp. $f\in L^2(\R)$) et $y\in G$, $T_y(f)=(x\mapsto f(xy))\in \C[G]$ (resp. $T_y(f)=(x\mapsto f(x+y))\in L^2(\R)$), on a $\langle T_h(f),T_h(g)\rangle=\langle f,g\rangle$, pour tous $f,g\in \C[G]$ et $h\in G$.
+\end{Rq}
+
+
+Pour $g\in G$, on définit $\delta_g\in \C[G]$ par $\delta_g(h)=\delta_{g,h}$ pour tout $h\in G$. Alors $(\delta_g)_{g\in G}$ est une base orthonormée de $\C[G]$.
+
+
+\section{Théorème de structure des groupes abéliens finis}
+\begin{Lem}\label{lemProlongement_caractères}
+On suppose $G$ abélien. Soient $H$ un sous-groupe de $G$ et $\chi\in \widehat{H}$. Alors il existe $\widetilde{\chi}\in \wg$ prolongeant $\chi$.
+\end{Lem}
+
+\begin{proof}
+Il suffit de montrer que si $x\in G\setminus H$, on peut prolonger $\chi$ à $\langle H,x\rangle$ (en effet, on pose $H_1=\langle x_1,H\rangle$, où $x_1\in G\setminus H$. Si $H_1=G$, on a fini, sinon on choisit $x_2\in G\setminus H_1$, $H_2=\langle H_1,x_2\rangle$ et on réitère le raisonnement autant que nécessaire). 
+
+Soit $x\in G\setminus H$. Soit $r=\min\{ k\in \N^*|\ x^k\in H\}$. Alors tout élément de $\langle x,H\rangle$ s'écrit de manière unique $x^kh$, où $k\in \llbracket 0,r-1\rrbracket$ et $h\in H$. Soit alors $u\in \C$ une racine $r$-ième de $\chi(x^r)$. On pose alors $\widetilde{\chi}(x^kh)=u^k\chi(h)$, si $k\in \llbracket 0,r-1\rrbracket$ et $h\in H$. On vérifie alors que $\widetilde{\chi}\in \widehat{\langle H,x\rangle}$, ce qui prouve le lemme. 
+\end{proof}
+
+Si $x\in G$, on note $\omega(x)\in \N$ son ordre. On appelle \textbf{exposant de $G$} le plus petit $n\in \N^*$ tel que $x^n=1$   pour tout $x\in G$. C'est aussi le ppcm de tous les $\omega(x)$, pour $x\in G$.
+
+\begin{Lem}\label{lemDéfinition_exposant}
+Soit $a$ l'exposant de $G$. Alors il existe $g\in G$ d'ordre $a$.
+\end{Lem}
+
+\begin{proof}
+Soit $a'=\max\{ \omega(y)|y\in G\}$. Montrons que $a=a'$. Supposons par l'absurde que $a\neq a'$. Comme $a'\leq a$, il existe $x_1\in G$ dont l'ordre $a_1$ ne divise pas $a'$. Il existe donc $p\in \p$ tel que $\alpha_1:=\nu_p(a_1)>\alpha:=\nu_p(a')$, où $\nu_p$ désigne la valuation $p$-adique. On écrit $a_1=p^{\alpha_1}k_1$, $a'=p^{\alpha '}k'$, où $k',k_1$ sont premiers avec $p$. 
+
+Construisons un élément d'ordre $p^{\alpha_1}k$. Soit $x'\in G$ d'ordre $a'$. Soient $y_1=x_1^{k_1}$ et $y'=x^{p^\alpha}$. Alors $\omega(y_1)=p^{\alpha_1}$, $\omega(y')=k'$ et comme $p^{\alpha_1}\wedge k'=1$, $y_1y$ est d'ordre $\omega(y_1)\omega(y')=p^{\alpha_1}k'>p^{\alpha'}k'=a'$. C'est absurde donc $a=a'$.
+\end{proof}
+
+\begin{Lem}\label{lemExistence_classification_groupes}
+Soit $G$ un groupe abélien fini. Alors il existe $k\in \N$, $n_1,\ldots,n_k\in \N$ tels que $n_k|\ldots |n_1$ et tel que $G$ soit isomorphe à $\Z/{n_1\Z}\times \ldots \times \Z/{n_k\Z}$. 
+\end{Lem}
+
+\begin{proof}
+Soit $n_1$ l'exposant de $G$ et $x\in G$ d'ordre $n_1$ (qui existe par le lemme~\ref{lemDéfinition_exposant}). Montrons que $G$ est isomorphe à $\langle x\rangle \times G/\langle x \rangle$. Soit $\chi:\langle x\rangle\overset{\sim}{\rightarrow} \mathbb{U}_{n_1}=\{z\in \C|z^{n_1}=1\}$ un isomorphisme de groupes. Par le lemme~\ref{lemProlongement_caractères}, il existe $\widetilde{\chi}\in \wg$ prolongeant $\chi$. De plus, par le théorème de Lagrange, $\widetilde{\chi}(G)\subset \mathbb{U}_{n_1}$. Soit $\phi:G\rightarrow \langle x\rangle \times G/\langle x\rangle$ définie par $\phi(g)=(\chi^{-1}(\widetilde{\chi}),\overline{g})$. Alors $\phi$ est un morphisme injectif donc $\phi$ est un isomorphisme. On conclut la preuve par récurrence en utilisant le fait que l'exposant $n_2$ de $G/\langle x \rangle$ divise $n_1$.
+ 
+\end{proof}
+
+Nous allons maintenant démontrer l'unicité dans le théorème de structure des groupes abéliens finis. 
+
+Soit $\lambda=(\lambda_1\geq \ldots \geq \lambda_s)$ une partition. On définit $\lambda^*$ la \textbf{partition duale} $\lambda^*=(\lambda_1^*\geq \ldots \geq \lambda_s^*)$ de $\lambda$ est définie par $\lambda_i^*=\{j|i\leq \lambda_j\}$. Graphiquement, il s'agit du passage, dans un tableau de Young, de la lecture horizontale à la lecture verticale. Il est alors clair que $(\lambda^*)^*=\lambda$. 
+
+\begin{Lem}\label{lemCalcul_cardinal_G_j}
+Soit $n\in  \Z$ et $p\in \p$. Alors $\nu_p(|\{x\in \Z/n\Z|p^ix=0\}|)=\left\{\begin{aligned} & i \ \mathrm{si\ }i\leq \nu_p(n) \\ & \nu_p(n)\mathrm{\ sinon}\end{aligned}\right.$
+\end{Lem}
+
+
+\begin{Lem}\label{lemUnicité_classification}
+Soit $p\in \p$. Soit $G=\Z/n_1\Z\times\ldots \times \Z/n_k\Z$, avec $n_k|\ldots |n_1$. Soient $k_p=\nu_p(|G|)$ et $m_p=\nu_p(n_1)$. Si $j\in \N^*$, on pose $G_j=\{x\in G|x^{p^j}=1\}$ et $\lambda_j=\nu_p(|G_j|)-\nu_p(|G_{j-1}|)$. Alors $(\lambda_1\geq \ldots \geq \lambda_{m_p}\geq 0)$ est une partition de $k_p$. La famille $(\nu_p(n_i))$ forme la partition duale de cette partition. En particulier, $(\nu_p(n_j))_{j\in \N^*}$ est entièrement déterminée par la classe d'isomorphisme de $G$.
+\end{Lem}
+
+\begin{proof}
+La suite $(G_j)$ est croissante. Par le lemme de Cauchy, $G_1\neq 0$. Par le lemme~\ref{lemDéfinition_exposant}, $G_k=G_{m_p}$ pour tout $k\geq m_p$. 
+
+Soit $i\in \N^*$. La multiplication par $p$ induit un morphisme de $G_{i+1}$ dans $G_{i}$ puis de $G_{i+1}$ dans $G_i/G_{i-1}$. Le noyau de ce morphisme est $G_{i}$ donc $G_{i+1}/G_i$ s'injecte dans $G_i/G_{i-1}$. On en déduit que $\lambda_1\geq \ldots\geq \lambda_{m_p}\geq 0$. Donc $\lambda$ est une partition de $\sum_{j\geq 1}\lambda_j=\nu_p(|G_{m_p}|)-\nu_p(|G_0|)=\nu_p(|G_{m_p}|)$.
+
+Par le lemme~\ref{lemCalcul_cardinal_G_j}, $\nu_p(|G_i|)=\sum_{j=1}^k \min(\nu_p(n_i),i)$, si $i\in \N^*$. Comme $m_p$ est le maximum des $\nu_p(n_j)$, on a \[\nu_p(|A_{m_p}|)=\sum_{j=1}^s\nu_p(n_j)=k_p.\]
+
+D'autre part, si $i\in \N^*$ et $j\in \llbracket 1,k\rrbracket$, $\min(\nu_p(n_j),i)-\min(\nu_p(n_j),i-1)$ vaut $0$ si $\nu_p(n_j)\leq i-1$ et $1$ sinon. On a donc $\lambda_i=\nu_p(|G_i|)-\nu_p(|G_{i-1}|)=\{j|i\leq \nu_p(a_j)\}|$. Ainsi, $(\nu_p(a_i))$ et $(\lambda_j)$ sont en dualité, ce qui prouve le lemme.
+\end{proof}
+
+\begin{Thm}\label{thmClassification_groupes_finis}
+Soit $G$ un groupe abélien fini. Alors il existe une unique famille finie $(n_1,\ldots,n_k)\in \N_{\geq 2}^k$ telle que $n_k|\ldots |n_1$ et $G\simeq \Z/n_1\Z\times \ldots\times \Z/n_k\Z$.
+\end{Thm}
+
+\begin{proof}
+On a déjà vu l'existence d'une telle famille au lemme~\ref{lemExistence_classification_groupes}. Soit $(n_i')$ une autre famille vérifiant la propriété de l'énoncé. Par le lemme~\ref{lemUnicité_classification}, pour tout $p\in \p$, $(\nu_p(n_i))=(\nu_p(n_i'))$, d'où l'unicité d'une telle famille.
+\end{proof}
+
+\section{Dual et bidual d'un groupe abélien}
+
+\begin{Lem}\label{lemDual_groupe_cyclique}
+Soit $n\in \N^*$. On suppose que $\Z/n\Z$. Soit $\omega=e^{\frac{2i\pi}{n}}$. Soit $\chi_\omega:\Z/n\Z\rightarrow \C$ défini par $\chi_\omega(\overline{k})=\omega^{\overline{k}}$ pour tout $\overline{k}\in Z/n\Z$. Alors l'application $\Z/n\Z\rightarrow \widehat{\Z/n\Z}$ envoyant tout $\overline{k}\in \Z/n\Z$ sur $\chi_{\omega}^{k}$ est bien définie et est un isomorphisme de groupes. En particulier, $\Z/n\Z\simeq \widehat{\Z/n\Z}$.
+\end{Lem}
+
+
+\begin{Lem}\label{lemDual_produit_groupes}
+Soient $G$ et $H$ deux groupes finis commutatifs. Alors $\widehat{G\times H}\simeq \widehat{G}\times \widehat{H}$.
+\end{Lem}
+
+\begin{proof}
+Soient $i_G:G\rightarrow G\times H$ et $i_H:H\rightarrow G\times H$ les injections canoniques. Alors $\phi:\widehat{G\times H}\rightarrow \widehat{G}\times \widehat{H}$ envoyant tout $\chi\in \widehat{G\times H}$ sur $(\chi\circ i_G,\chi\circ i_H)$ est un isomorphisme. 
+\end{proof}
+
+\begin{Thm}
+Soit $G$ un groupe abélien fini. Alors $G$ est isomorphe à $\widehat{G}$.
+\end{Thm}
+
+\begin{proof}
+C'est une conséquence du théorème~\ref{thmClassification_groupes_finis} (ou plus simplement du lemme~\ref{lemExistence_classification_groupes}), du lemme~\ref{lemDual_groupe_cyclique} et du lemme~\ref{lemDual_produit_groupes}.
+\end{proof}
+
+\begin{Prop}
+On a un isomorphisme canonique $G\simeq \widehat{\widehat{G}}$ donné par l'application  
+\[\phi: \left\{\begin{aligned} G & \rightarrow  \widehat{\wg}\\ g & \mapsto (\phi(g):\chi\mapsto \chi(g))\end{aligned}\right. .\]
+\end{Prop}
+
+
+\section{Orthogonalité des caractères}
+
+\begin{Lem}\label{lemOrthogonalité_caractères}
+Soient $G$ un groupe abélien fini et $\chi\in \widehat{G}$. Alors \[\sum_{g\in G}\chi(g)=\left\{\begin{aligned} 0& \mathrm{\ si\ }& \chi\neq 1\\ |G| & \mathrm{\ si\ }&\chi=1\end{aligned}\right. .\]
+\end{Lem}
+
+\begin{proof}
+Supposons $\chi\neq 1$. Soit $h\in G$ tel que $\chi(h)\neq 1$. Alors \[\chi(h)\sum_{g\in G} \chi(g)=\sum_{g\in hG}\chi(g)=\sum_{g\in G} \chi(g).\]
+\end{proof}
+
+On en déduit la proposition suivante : 
+
+\begin{Prop}\label{propDual_base_orthonormée}
+Soit $G$ un groupe abélien fini. Alors $\widehat{G}$ est une base orthonormale de $\C[G]$.
+\end{Prop}
+
+
+Soit $f\in \C[G]$. Alors par la proposition~\ref{propDual_base_orthonormée}, $f=\sum_{g\chi\in \wg}\langle f,\chi\rangle \chi$. On pose $c_\chi(f)=\langle f,\chi\rangle$ si $f\in \C[G]$. On a alors $f=\sum_{\chi\in \wg}c_f(\chi)\chi$.
+
+\begin{Def}
+Soit $\FS$ l'application de $\C[G]$ dans $\C[\wg]$ qui envoie tout $f\in \C[G]$ sur 
+$\widehat{f}=\FS(f)$
+ définie par $\widehat{f}(\chi)=\sum_{g\in G}f(g)\chi(g)$. L'application $\FS$ est appelée la \textbf{transformée de Fourier discrète}.
+\end{Def}
+
+
+On peut munir $\C[G]$ d'une structure d'algèbre associative en posant $(f\times f')(g)=f(g)f'(g)$ pour tous $f,f'\in\C[G]$ et $g\in G$. Cependant, cette structure dépend uniquement de l'ensemble sous-jacent de $G$ et pas de sa structure de groupe. On munit $\C[G]$ d'une convolution $*$ prenant en compte la structure de groupe de $G$. Si $f,f'\in \C[G]$ et $g\in G$, on définit $f*f'\in \C[G]$ par :  \[f*f'(g)=\sum_{h_1,h_2\in G|h_1h_2=g}f(h_1)f'(h_2)=\sum_{h\in G}f(h)f'(h^{-1}g).\] Alors $(\C[G],*)$ est une algèbre sur $\C$. On peut vérifier qu'elle est associative et commutative (c'est en fait une conséquence du théorème ci-dessous). On a $\delta_g*\delta_{g'}=\delta_{gg'}$ pour tout $g,g'\in G$ et $*$ est la seule loi bilinéaire sur $\C[G]$ vérifiant cette propriété.
+
+\begin{Thm}\label{thmTransformée_Fourier_discrète}
+La transformée de Fourier discrète $\FS$ possède les propriétés suivantes. \begin{enumerate}
+
+\item C'est un isomorphisme d'algèbres de $(\C[G],*)$ dans $(\C[\wg],\times)$. En particulier $*$ est commutatif et associatif.
+
+\item (Formule de Plancherel) C'est presque une isométrie  : $\langle f_1,f_2\rangle =\frac{1}{|G|}\langle \widehat{f_1},\widehat{f_2}\rangle$ pour tout $f_1,f_2\in \C[G]$.
+
+\item (Formule d'inversion) Pour $f\in \C[G]$, $f=\sum_{\chi\in \wg} c_f(\chi)\chi=\frac{1}{|G|}\sum_{\chi\in \wg} \widehat{f}(\overline{\chi})\chi$. 
+\end{enumerate}
+\end{Thm}
+
+\begin{proof}
+Soient $f_1,f_2\in \C[G]$. Alors \[\begin{aligned} \langle\widehat{f}_1,\widehat{f}_2\rangle &=\frac{1}{|\wg|}\sum_{\chi\in \wg} \overline{\widehat{f}_1(\chi)}\widehat{f}_2(\chi)\\ 
+&=\frac{1}{|G|}\sum_{g_1,g_2\in G, \chi\in \wg} \overline{f_1(g_1)\chi(g_1)}f_2(g_2)\chi(g_2)\\ 
+&= \frac{1}{|G|}\sum_{g_1,g_2\in G, \chi\in \wg}\overline{f_1(g_1)}f_2(g_2)\chi(g_1^{-1}g_2)\\ 
+&=\frac{1}{|G|}\sum_{g_1,g_2\in G}\overline{f_1(g_1)}f_2(g_2)\sum_{\chi\in \wg}\chi(g_1^{-1}g_2) .\end{aligned}\]
+
+Soient $g_1,g_2\in G$. En appliquant le lemme~\ref{lemOrthogonalité_caractères} (orthogonalité des caractères) à $\wg$, on obtient que $\sum_{\chi\in \wg} \chi(g_1^{-1}g_2 )=|\wg|\delta_{g_1^{-1}g_2,1}=|G|\delta_{g_1,g_2}$. Ainsi, $\langle f_1,f_2\rangle=\sum_{g\in G}\overline{f_1(g)}f_2(g)=|G|\langle f_1,f_2\rangle$, ce qui démontre la formule de Plancherel.
+
+On en déduit que $\FS$ est le produit d'une homothétie non nulle et d'une isométrie. C'est donc une injection et par dimensions, c'est un isomorphisme. 
+
+Soient $f_1,f_2\in \C[G]$ et $\chi\in \wg$. Alors \[\begin {aligned}\widehat{f}_1\times \widehat{f}_2(\chi) &=\widehat{f}_1(\chi)\widehat{f}_2(\chi)\\ 
+&= \sum_{g_1\in G} f_1(g_1)\chi(g_1)\sum_{g_2\in G}f_2(g_2)\chi(g_2)\\ &= \sum_{g_1,g_2\in G}f_1(g_1)f_2(g_2)\chi(g_1g_2)\\ &= \sum_{g\in G} \sum_{g_1,g_2|g_1g_2=g} f_1(g_1)f_2(g_2)\chi(g)\\ 
+&=\sum_{g\in G}f_1(g)*f_2(g)\chi(g)=\widehat{f_1*f_2}(\chi).\end{aligned}\]
+
+L'application $\FS$ est donc un isomorphisme d'algèbres de $(\C[G],*)$ dans $(\C[\wg],\times)$.
+
+La formule d'inversion est une conséquence du fait que $\wg$ est une base orthonormée de $\C[G]$ et de la définition de $\FS$.
+
+
+\end{proof}
+
+
+
+\end{document}
